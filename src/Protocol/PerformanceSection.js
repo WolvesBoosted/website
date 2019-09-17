@@ -1,26 +1,25 @@
-import React from 'react';
-import './PerformanceSection.scss';
+import React from "react";
+import Odometer from "react-odometerjs";
 
-import '../../node_modules/aos/dist/aos.css';
+import { withLocalize } from "react-localize-redux";
+import { Translate } from "react-localize-redux";
+import englishTranslation from "./i18n/PerformanceSection.en.json";
+import chineseTranslation from "./i18n/PerformanceSection.zh.json";
+import I18nComponent from "../Components/I18nComponent";
 
-import Odometer from 'react-odometerjs';
-import AOS from 'aos';
+import "./PerformanceSection.scss";
 
-class PerformanceSection extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+class PerformanceSection extends I18nComponent {
+  constructor(props) {
+    super(props, englishTranslation, chineseTranslation);
     this.state = {
       throughput: 100,
-      cost: '0.003',
+      cost: this.isChinese() ? 0.015 : 0.0021
     };
-    AOS.init();
-  }
-  componentDidUpdate() {
-    AOS.refresh();
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({throughput: 350}), 50);
+    setTimeout(() => this.setState({ throughput: 350 }), 50);
     // setTimeout(data => this.setState({ cost: 0.002 }), 1000);
   }
 
@@ -34,7 +33,9 @@ class PerformanceSection extends React.Component {
                 data-aos="fade-up"
                 className="column is-12 is-centered has-text-centered"
               >
-                <h1>Remarkable Throughput</h1>
+                <h1>
+                  <Translate id="headingThroughput" />
+                </h1>
                 <Odometer value={this.state.throughput} format="(,ddd)" />
               </div>
             </div>
@@ -48,13 +49,10 @@ class PerformanceSection extends React.Component {
               >
                 <div className="content">
                   <p>
-                    Loopring 3.0 can settle up to 350 trades per second while
-                    guarantees the same level of security as the underlying
-                    Ethereum blockchain. This is powered by a zkRollup feature
-                    called <b>On-Chain Data Availability</b>, or <b>OCDA</b>. If
-                    OCDA is disabled, Loopring provides consortium-level
-                    security, and its throughput will be much higher, as shown
-                    in the following table.
+                    <Translate
+                      id="throughputDetail"
+                      options={{ renderInnerHtml: true }}
+                    />
                   </p>
                 </div>
               </div>
@@ -71,18 +69,28 @@ class PerformanceSection extends React.Component {
                     <tr>
                       <th className="first"></th>
                       <th>
-                        Throughput
-                        <br /> with OCDA
+                        <div>
+                          <Translate id="table.throughput" />
+                        </div>
+                        <div>
+                          <Translate id="table.withOCDA" />
+                        </div>
                       </th>
                       <th>
-                        Throughput
-                        <br /> without OCDA
+                        <div>
+                          <Translate id="table.throughput" />
+                        </div>
+                        <div>
+                          <Translate id="table.withoutOCDA" />
+                        </div>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="first">Currently</td>
+                      <td className="">
+                        <Translate id="table.current" />
+                      </td>
                       <td>
                         <span className="highlighted">350</span>
                       </td>
@@ -91,7 +99,9 @@ class PerformanceSection extends React.Component {
                       </td>
                     </tr>
                     <tr>
-                      <td className="first">Post-Istanbul</td>
+                      <td className="">
+                        <Translate id="table.post" />
+                      </td>
                       <td>
                         <span className="highlighted">1,400</span>
                       </td>
@@ -112,15 +122,19 @@ class PerformanceSection extends React.Component {
               >
                 <ul className="links">
                   <li>
-                    <a disabled className="has-leading-thick-arrow highlight">
-                      Loopring 3.0 Smart Contracts·············the on-chain part{' '}
-                      <span className="symboled">⟁</span>
+                    <a
+                      href="https://github.com/Loopring/protocols/tree/master/packages/loopring_v3/contracts"
+                      className="underline has-leading-thick-arrow"
+                    >
+                      <Translate id="links.contracts" />
                     </a>
                   </li>
                   <li>
-                    <a disabled className="has-leading-thick-arrow highlight">
-                      Loopring 3.0 ZKP circuits·····················the
-                      off-chain part <span className="symboled"> ⧉</span>
+                    <a
+                      href="https://github.com/Loopring/protocols/tree/master/packages/loopring_v3/circuit"
+                      className="underline has-leading-thick-arrow"
+                    >
+                      <Translate id="links.circuits" />
                     </a>
                   </li>
                 </ul>
@@ -131,16 +145,18 @@ class PerformanceSection extends React.Component {
 
         {/* ====*/}
 
-        <section className="section section-protocol-cost is-large has-background-black">
+        <section className="section section-protocol-cost is-large has-background-primary-dark">
           <div className="container">
             <div className="columns is-centered">
               <div
                 data-aos="fade-up"
                 className="column is-12 is-centered has-text-centered"
               >
-                <h1>Low Settlement Cost</h1>
+                <h1>
+                  <Translate id="headingCost" />
+                </h1>
                 <Odometer
-                  theme="white"
+                  theme="white smaller"
                   format="(ddd).dddd"
                   value={this.state.cost}
                 />
@@ -154,47 +170,12 @@ class PerformanceSection extends React.Component {
               >
                 <div className="content">
                   <p>
-                    The average settlement cost for each trade is as low as{' '}
-                    {this.state.cost}
-                    USD, which covers the gas for Ethereum transactions and the
-                    cost of proof generation on cloud computing platforms. DEXes
-                    can further lower the settlement cost by using cheaper
-                    servers in the cloud and GPU-based algorithms. To put things
-                    into perspective, most brokers' stock trading fees in the US
-                    are in the range of 2 to 7 USD per trade.
+                    <Translate
+                      id="costDetail"
+                      options={{ renderInnerHtml: true }}
+                    />
                   </p>
                 </div>
-              </div>
-            </div>
-
-            {/* ---*/}
-            <div className="columns is-centered">
-              <div
-                data-aos="fade-up"
-                className="column is-5 is-centered has-text-centered"
-              >
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th className="first"></th>
-                      <th>Cost per Trade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="first">Currently</td>
-                      <td>
-                        <span className="">${this.state.cost}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="first">Post-Istanbul</td>
-                      <td>
-                        <span className="">${this.state.cost - 0.0005}</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
 
@@ -207,15 +188,19 @@ class PerformanceSection extends React.Component {
               >
                 <ul className="links">
                   <li>
-                    <a disabled className="has-leading-thick-arrow">
-                      Loopring 3.0 Smart Contracts·············the on-chain part{' '}
-                      <span className="symboled">⟁</span>
+                    <a
+                      href="https://github.com/Loopring/protocols/tree/master/packages/loopring_v3/contracts"
+                      className="underline has-leading-thick-arrow"
+                    >
+                      <Translate id="links.contracts" />
                     </a>
                   </li>
                   <li>
-                    <a disabled className="has-leading-thick-arrow">
-                      Loopring 3.0 ZKP circuits·····················the
-                      off-chain part <span className="symboled"> ⧉</span>
+                    <a
+                      href="https://github.com/Loopring/protocols/tree/master/packages/loopring_v3/circuit"
+                      className="underline has-leading-thick-arrow"
+                    >
+                      <Translate id="links.circuits" />
                     </a>
                   </li>
                 </ul>
@@ -228,4 +213,4 @@ class PerformanceSection extends React.Component {
   }
 }
 
-export default PerformanceSection;
+export default withLocalize(PerformanceSection);

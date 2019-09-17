@@ -1,20 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import './Updates.scss';
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
-import Header from '../Components/Header.js';
-import Footer from '../Components/Footer.js';
+import HeroSection from "./HeroSection";
+import ArticlesSection from "./ArticlesSection";
 
-import SectionUpdatesHero from './HeroSection.js';
-import ArticlesSection from './ArticlesSection.js';
+import "./Updates.scss";
 
 class Updates extends React.Component {
   render() {
     return (
       <div className="page-updates">
         <Header />
-        <SectionUpdatesHero />
-        <ArticlesSection />
+        <HeroSection
+          key={this.props.group + "_hero"}
+          group={this.props.group}
+        />
+        <ArticlesSection
+          key={this.props.group + "_article_section"}
+          group={this.props.group}
+        />
         <Footer />
       </div>
     );

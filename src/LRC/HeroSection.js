@@ -1,19 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import './HeroSection.scss';
+import { withLocalize } from "react-localize-redux";
+import { Translate } from "react-localize-redux";
+import englishTranslation from "./i18n/HeroSection.en.json";
+import chineseTranslation from "./i18n/HeroSection.zh.json";
+import I18nComponent from "../Components/I18nComponent";
 
-import '../../node_modules/aos/dist/aos.css';
-import AOS from 'aos';
+import "./HeroSection.scss";
 
-class HeroSection extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    AOS.init();
+class HeroSection extends I18nComponent {
+  constructor(props) {
+    super(props, englishTranslation, chineseTranslation);
   }
-  componentDidUpdate() {
-    AOS.refresh();
-  }
-
   render() {
     return (
       <section className="section section-lrc-hero is-large has-background-white">
@@ -21,10 +19,11 @@ class HeroSection extends React.Component {
           <div className="column is-12 is-unselectable hero has-text-din">
             <div className="container">
               <div data-aos="fade-up" className="text">
-                Buy and stake <span className="symbol">LRC</span>
+                <Translate id="buyAndStake" />{" "}
+                <span className="symbol">LRC</span>
               </div>
               <div data-aos="fade-up" className="text smaller">
-                to capture the growing value of Loopring's ecosystem.
+                <Translate id="buyAndStakeTo" />
               </div>
             </div>
           </div>
@@ -34,4 +33,4 @@ class HeroSection extends React.Component {
   }
 }
 
-export default HeroSection;
+export default withLocalize(HeroSection);

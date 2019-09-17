@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import './About.scss';
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
-import Header from '../Components/Header.js';
-import Footer from '../Components/Footer.js';
+// import HeroSection from "./HeroSection";
+import OverviewSection from "./OverviewSection";
+import VersionsSection from "./VersionsSection";
+import FeaturesSection from "./FeaturesSection";
+// import MediaSection from "./MediaSection";
+import HacksSection from "./HacksSection";
 
-import HeroSection from './HeroSection.js';
-import OverviewSection from './OverviewSection.js';
-import VersionsSection from './VersionsSection.js';
-import FeaturesSection from './FeaturesSection.js';
-// import MediaSection from './MediaSection.js';
-import HacksSection from './HacksSection.js';
+import "./About.scss";
 
 class About extends React.Component {
   render() {
     return (
       <div className="page-about">
         <Header />
-        <HeroSection />
+        {/* <HeroSection />*/}
         <OverviewSection />
         <VersionsSection />
         <FeaturesSection />

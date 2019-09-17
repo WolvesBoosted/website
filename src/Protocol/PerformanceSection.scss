@@ -6,17 +6,17 @@
   table {
     margin-top: 20px;
     width: 100%;
-    display: inline-block;
     background-color: transparent;
     color: $black;
-    border-bottom: 2px solid $grey-darker;
+    font-size: $body-size !important;
 
-    br {
-      display: none;
-      @include mobile {
-        display: inline-block;
-      }
+    @include mobile {
+      font-size: 12 !important;
     }
+  }
+
+  tbody {
+    border-bottom: 2px solid $grey-darker;
   }
 
   td {
@@ -25,32 +25,35 @@
     margin-right: 0;
     margin-left: 0;
     // border: none;
-    font-size: $body-size !important;
     white-space: nowrap;
-    // color: $black;
-  }
-
-  tbody td {
-    text-align: right;
+    // color: $black
+    // width: 100% !important;
+    text-align: center;
   }
 
   th {
+    // width: 100% !important;
+    text-align: center;
     border: 0;
-    font-weight: 500;
+    font-weight: 400;
     border-top: none;
     white-space: nowrap;
     border-bottom: 1px solid $grey-darker;
-  }
 
-  .first {
-    text-align: left;
-    width: 100%;
+    > div {
+      margin: auto;
+    }
   }
 
   .odometer {
     font-size: 8rem;
+
+    &.smaller {
+      font-size: 6.5rem;
+    }
+
     margin-bottom: 40px;
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     *vertical-align: auto;
     *zoom: 1;
@@ -59,7 +62,7 @@
     white-space: nowrap;
 
     @include mobile {
-      transform: scale(0.65);
+      font-size: 4rem !important;
     }
   }
 
@@ -154,6 +157,7 @@
   .odometer {
     font-family: $theme-font;
     user-select: none;
+    margin-top: 20px;
   }
 
   .odometer .odometer-digit {
@@ -178,13 +182,9 @@
     left: 0.15em;
   }
 
-  .odometer.odometer-theme-white {
-    padding-right: 8px;
-  }
-
   .odometer.odometer-theme-white .odometer-digit {
     background-color: $white-bis;
-    color: $black;
+    color: $dark-blue;
   }
 
   .odometer.odometer-theme-white .odometer-formatting-mark.odometer-radix-mark {
@@ -210,26 +210,8 @@
     // padding-left: 60px;
     // margin-left: -20px;
     position: relative;
-
-    .symboled {
-      font-size: 20px;
-      font-weight: 700;
-    }
   }
 }
 
 .section-protocol-cost {
-  table {
-    color: $white !important;
-    border-bottom: 2px solid $white;
-  }
-
-  .table thead td,
-  .table thead th {
-    color: $white !important;
-  }
-
-  th {
-    border-bottom: 1px solid $white;
-  }
 }

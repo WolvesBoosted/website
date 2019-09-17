@@ -1,33 +1,14 @@
-import React from 'react';
-import './ConfigurationSection.scss';
-import '../../node_modules/aos/dist/aos.css';
-import AOS from 'aos';
-const API = './json_en/configs.json';
+import React from "react";
 
-class ConfigurationSection extends React.Component {
+import englishTranslation from "./i18n/ConfigurationSection.en.json";
+import chineseTranslation from "./i18n/ConfigurationSection.zh.json";
+import JsonI18nComponent from "../Components/JsonI18nComponent";
+
+import "./ConfigurationSection.scss";
+
+class ConfigurationSection extends JsonI18nComponent {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      constants: [],
-      dexParams: [],
-      onchainParams: [],
-      offchainParams: [],
-    };
-    AOS.init();
-  }
-
-  componentDidMount() {
-    fetch(API)
-        .then((response) => response.json())
-        .then((data) =>
-          this.setState({
-            constants: data.constants,
-            dexParams: data.dexParams,
-            onchainParams: data.onchainParams,
-            offchainParams: data.offchainParams,
-          })
-        );
+    super(props, englishTranslation, chineseTranslation);
   }
 
   render() {
@@ -36,31 +17,51 @@ class ConfigurationSection extends React.Component {
         <div className="container">
           <div className="columns is-centered">
             <div data-aos="fade-up" className="column is-12 has-text-centered">
-              <h1>DEX Configuration</h1>
-            </div>{' '}
+              <h1>{this.state.I.heading}</h1>
+            </div>
           </div>
 
           {/* ---*/}
-          <div className="columns is-centered">
+          <div className="columns is-centered is-multiline">
             <div data-aos="fade-up" className="column is-5">
               <div className="content">
-                <h2>Global Constants</h2>
-                <div className="remark">
-                  <i>
-                    A list of protocol-wise constants that will never be
-                    changed.
-                  </i>
-                </div>
+                <h2>{this.state.I.constants.heading}</h2>
+                <div className="remark">{this.state.I.constants.remark}</div>
                 <ul>
-                  {this.state.constants.map((item, idx) => (
+                  {this.state.I.constants.items.map((item, idx) => (
                     <li key={idx}>
-                      <div className="has-leading-thin-arrow">
-                        <span className="name">{item.name}</span>{' '}
-                        <span className="tag">
-                          {item.type}: {item.value}
-                        </span>
+                      <div className="has-leading-thin-arrow name">
+                        {item.name}
+                      </div>{" "}
+                      <div className="tag">
+                        {item.type}: {item.value}
                       </div>
-                      <div className="meaning">{item.meaning}</div>
+                      <div
+                        className="meaning"
+                        dangerouslySetInnerHTML={{ __html: item.meaning }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div data-aos="fade-up" className="column is-5">
+              <div className="content">
+                <h2>{this.state.I.globalParams.heading}</h2>
+                <div className="remark">{this.state.I.globalParams.remark}</div>
+                <ul>
+                  {this.state.I.globalParams.items.map((item, idx) => (
+                    <li key={idx}>
+                      <div className="has-leading-thin-arrow name">
+                        {item.name}
+                      </div>{" "}
+                      <div className="tag">
+                        {item.type}: {item.value}
+                      </div>
+                      <div
+                        className="meaning"
+                        dangerouslySetInnerHTML={{ __html: item.meaning }}
+                      />
                     </li>
                   ))}
                 </ul>
@@ -69,71 +70,69 @@ class ConfigurationSection extends React.Component {
 
             <div data-aos="fade-up" className="column is-5">
               <div className="content">
-                <h2>DEX Initialization Settings</h2>
-                <div className="remark">
-                  <i>
-                    A list of per-DEX constants whose values are fixed once the
-                    DEX is forged.
-                  </i>
-                </div>
+                <h2>{this.state.I.dexParams.heading}</h2>
+                <div className="remark">{this.state.I.dexParams.remark}</div>
                 <ul>
-                  {this.state.dexParams.map((item, idx) => (
+                  {this.state.I.dexParams.items.map((item, idx) => (
                     <li key={idx}>
-                      <div className="has-leading-thin-arrow">
-                        <span className="name">{item.name}</span>{' '}
-                        <span className="tag">
-                          {item.type}: {item.value}
-                        </span>
+                      <div className="has-leading-thin-arrow name">
+                        {item.name}
+                      </div>{" "}
+                      <div className="tag">
+                        {item.type}: {item.value}
                       </div>
-                      <div className="meaning">{item.meaning}</div>
+                      <div
+                        className="meaning"
+                        dangerouslySetInnerHTML={{ __html: item.meaning }}
+                      />
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div className="content">
-                <h2>DEX On-Chain Parameters</h2>
+                <h2>{this.state.I.offchainParams.heading}</h2>
                 <div className="remark">
-                  <i>
-                    A list of DEX smart contract parameters whose values can
-                    only be changed by the DEX owner.
-                  </i>
+                  {this.state.I.offchainParams.remark}
                 </div>
+
                 <ul>
-                  {this.state.onchainParams.map((item, idx) => (
+                  {this.state.I.offchainParams.items.map((item, idx) => (
                     <li key={idx}>
-                      <div className="has-leading-thin-arrow">
-                        <span className="name">{item.name}</span>{' '}
-                        <span className="tag">
-                          {item.type}: {item.value}
-                        </span>
+                      <div className="has-leading-thin-arrow name">
+                        {item.name}
+                      </div>{" "}
+                      <div className="tag">
+                        {item.type}: {item.value}
                       </div>
-                      <div className="meaning">{item.meaning}</div>
+                      <div
+                        className="meaning"
+                        dangerouslySetInnerHTML={{ __html: item.meaning }}
+                      />
                     </li>
                   ))}
                 </ul>
               </div>
-
+            </div>
+            <div data-aos="fade-up" className="column is-5">
               <div className="content">
-                <h2>DEX off-Chain Parameters</h2>
+                <h2>{this.state.I.onchainParams.heading}</h2>
                 <div className="remark">
-                  <i>
-                    A list of DEX circuit parameters whose values can only be
-                    changed by DEX operators very frequently, e.g. per order,
-                    token, trading-pair, or even per-trade.
-                  </i>
+                  {this.state.I.onchainParams.remark}
                 </div>
-                .
                 <ul>
-                  {this.state.offchainParams.map((item, idx) => (
+                  {this.state.I.onchainParams.items.map((item, idx) => (
                     <li key={idx}>
-                      <div className="has-leading-thin-arrow">
-                        <span className="name">{item.name}</span>{' '}
-                        <span className="tag">
-                          {item.type}: {item.value}
-                        </span>
+                      <div className="has-leading-thin-arrow name">
+                        {item.name}
+                      </div>{" "}
+                      <div className="tag">
+                        {item.type}: {item.value}
                       </div>
-                      <div className="meaning">{item.meaning}</div>
+                      <div
+                        className="meaning"
+                        dangerouslySetInnerHTML={{ __html: item.meaning }}
+                      />
                     </li>
                   ))}
                 </ul>

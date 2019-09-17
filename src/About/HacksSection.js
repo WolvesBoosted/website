@@ -1,54 +1,26 @@
-import React from 'react';
-import './HacksSection.scss';
-import '../../node_modules/aos/dist/aos.css';
-import AOS from 'aos';
+import React from "react";
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faRadiationAlt} from '@fortawesome/free-solid-svg-icons';
+import englishTranslation from "./i18n/HacksSection.en.json";
+import chineseTranslation from "./i18n/HacksSection.zh.json";
+import JsonI18nComponent from "../Components/JsonI18nComponent";
 
-const API = './json_en/hacks.json';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRadiationAlt } from "@fortawesome/free-solid-svg-icons";
 
-class HacksSection extends React.Component {
+import "./HacksSection.scss";
+
+class HacksSection extends JsonI18nComponent {
   constructor(props) {
-    super(props);
-    this.hackStories = React.createRef();
-    this.state = {
-      title: '...',
-      stories: [],
-    };
-    AOS.init();
-  }
-
-  componentDidMount() {
-    this.timer = setTimeout(
-        () =>
-          fetch(API)
-              .then((response) => response.json())
-              .then((data) => {
-                this.setState({total: data.total, stories: data.stories});
-              }),
-        1000
-    );
-  }
-
-  componentDidUpdate() {
-    AOS.refresh();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
+    super(props, englishTranslation, chineseTranslation);
   }
 
   render() {
     return (
-      <section
-        ref={this.hackStories}
-        className="section section-about-hacks is-large has-background-grey"
-      >
+      <section className="section section-about-hacks is-large has-background-grey">
         <div className="container">
           <div className="columns is-centered">
             <div data-aos="fade-up" className="column is-12 has-text-centered">
-              <h1>Crypto Hacks</h1>
+              <h1>{this.state.I.heading}</h1>
             </div>
           </div>
           {/* ---*/}
@@ -59,19 +31,13 @@ class HacksSection extends React.Component {
             >
               <FontAwesomeIcon icon={faRadiationAlt} size="5x" />
 
-              <div className="total-figure">
-                {this.state.total}{' '}
-                <span className="total-figure-label">
-                  — the crypto-assets hacked from centralized exchanges that
-                  belongs to the users, and counting...
-                </span>
-              </div>
+              <div className="total-figure">{this.state.I.total}</div>
             </div>
             <div
               data-aos="fade-up"
               className="column is-9 is-12-mobile stories"
             >
-              {this.state.stories.map((story, idx) => (
+              {this.state.I.stories.map((story, idx) => (
                 <div className="columns" key={idx}>
                   <div
                     data-aos="fade-up"
@@ -101,11 +67,8 @@ class HacksSection extends React.Component {
               data-aos="fade-up"
               className="column has-text-centered  is-12 call-for-action"
             >
-              <a
-                className="is-rounded is-unselectable has-trailing-arrow"
-                href="/protocol"
-              >
-                Learn how Loopring 3.0 achieves high level of security
+              <a className="is-rounded is-unselectable " href="/#/protocol">
+                {this.state.I.learn}
               </a>
             </div>
           </div>

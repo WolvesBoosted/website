@@ -1,3 +1,19 @@
 @charset "utf-8";
 
 @import "../Variables.scss";
+
+.section-updates-hero {
+  transition: opacity 2s ease-in;
+  height: 50vh;
+  min-height: 300px;
+  margin: 0;
+  padding: 0;
+  background-color: $primary;
+  background-position: center center;
+  background-size: cover;
+
+  h1 {
+    color: $white;
+    letter-spacing: 3px;
+  }
+}

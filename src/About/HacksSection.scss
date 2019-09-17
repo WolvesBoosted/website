@@ -6,6 +6,10 @@
   .total-figure {
     margin-top: 40px;
     font-weitht: 700;
+
+    @include mobile {
+      text-align: left;
+    }
   }
 
   a > h2 {
@@ -31,8 +35,11 @@
     transition-timing-function: ease-in-out;
     // box-shadow: inset 0 -2px $black;
 
+    @include mobile {
+      padding: 10px;
+    }
     &:hover {
-      background: $blue;
+      background: $primary;
       color: $white;
     }
   }

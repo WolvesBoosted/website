@@ -1,34 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import './LRC.scss';
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
-import '../../node_modules/aos/dist/aos.css';
-import AOS from 'aos';
+import HeroSection from "./HeroSection";
+import IconSection from "./IconSection";
+import StakingSection from "./StakingSection";
+import TokenInfoSection from "./TokenInfoSection";
 
-import Header from '../Components/Header.js';
-import Footer from '../Components/Footer.js';
-
-import HeroSection from './HeroSection.js';
-import IconSection from './IconSection.js';
-import StakingSection from './StakingSection.js';
-import TokenInfoSection from './TokenInfoSection.js';
+import "./LRC.scss";
 
 class LRC extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    AOS.init();
-  }
-  componentDidUpdate() {
-    AOS.refresh();
-  }
-
   render() {
     return (
       <div className="page-lrc">
         <Header />
         <HeroSection />
         <IconSection />
-
         <StakingSection />
         <TokenInfoSection />
         <Footer />

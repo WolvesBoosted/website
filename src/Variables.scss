@@ -4,17 +4,12 @@
 
 // Loopring theme colors
 $black: #272727;
-$blue: #1c60ff;
-$light-blue: #1c71ff;
-$purple: #8dafff;
-$mint: #3fafff;
-$grayish-blue: #67759a;
+$primary: #1c60ff;
+$dark-blue: darken($primary, 15);
 $white: #ffffff;
 
-$primary: $blue;
-
 // Body  & Global
-$body-size: 14px;
+$body-size: 15px;
 $body-color: $black;
 $body-background-color: $white-bis;
 $family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -26,7 +21,9 @@ $theme-font: "DINCondensed-Regular", sans-serif;
 $navbar-item-color: $black;
 $navbar-item-hover-color: $black;
 $navbar-item-hover-background-color: transparent;
-
+$navbar-background-color: $white;
+$navbar-item-img-max-height: 80px;
+$navbar-height: 4.5rem;
 $very-light-background: #f5f6f7;
-$image-overlay-background: $white;
-$image-overlay-foreground: $black;
+$image-overlay-background: $primary;
+$image-overlay-foreground: $primary;

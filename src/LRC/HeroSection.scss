@@ -5,16 +5,21 @@
 .section-lrc-hero {
   .hero {
     // letter-spacing: -3px;
-    font-size: 4.5em;
+    font-size: 4em;
     font-weight: 700;
     text-transform: uppercase;
+
+    @include mobile {
+      margin-top: 60px;
+      font-size: 3.2em;
+    }
 
     .symbol {
       color: $primary;
     }
 
     .smaller {
-      font-size: 3rem !important;
+      font-size: 1.8rem !important;
     }
   }
 }

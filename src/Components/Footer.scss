@@ -2,6 +2,8 @@
 @import "../Variables.scss";
 
 .footer {
+  padding-bottom: 1rem !important;
+
   * {
     user-select: none;
   }
@@ -27,7 +29,7 @@
   background-color: white;
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
     box-shadow: inset 0 -2px transparent;
     transition-duration: 0.5s;
     display: inline-block;
@@ -35,6 +37,21 @@
 
     &:hover {
       box-shadow: inset 0 -2px $black;
+    }
+  }
+
+  .org {
+    padding-top: 20px;
+
+    @include mobile {
+      margin-top: 40px;
+    }
+
+    p {
+      display: block;
+      color: grey;
+      font-size: 13px;
+      margin: 10px;
     }
   }
 }

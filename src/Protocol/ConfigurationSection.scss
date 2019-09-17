@@ -6,28 +6,49 @@
     margin-left: 0;
     margin-top: 0;
   }
+
   li {
     padding-bottom: 20px;
     list-style-type: none;
+    display: block;
   }
 
   .remark {
     margin-bottom: 20px;
+    background-color: $grey-lighter;
+    padding: 20px;
+    border-left: 2px solid $grey-dark;
+    overflow: hidden;
   }
 
   .name {
     font-size: 0.8em;
     font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  code {
+    color: $primary;
   }
 
   .tag {
-    background-color: $grey;
+    border-radius: 3px;
+    margin-left: 24px;
     color: $white;
+    background-color: $grey;
     font-weight: 700;
-    margin-left: 20px;
+    max-width: 200px;
+    min-width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 20px;
+    display: inline-block !important;
   }
+
   .meaning {
-    text-align: justify;
+    // text-align: justify;
     padding: 4px 26px;
+    overflow: hidden;
   }
 }
